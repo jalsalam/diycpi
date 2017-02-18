@@ -10,4 +10,4 @@ source('R/read_ces_fns.R')
 source('R/read_ces_data.R')
 
 #do a calc based on it
-source('R/calc.R')
+source('R/calc.R', echo=TRUE)
