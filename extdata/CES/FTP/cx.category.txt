@@ -1,0 +1,5 @@
+category_code	category_text	column_text	display_level	selectable	sort_sequence
+ADDENDA	Assets and liabilities, and other financial info	0	T	300	
+CUCHARS	Consumer Characteristics	0	T	400	
+EXPEND	Expenditures	0	T	100	
+INCOME	Income and Taxes	0	T	200	

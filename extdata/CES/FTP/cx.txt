@@ -1,0 +1,436 @@
+Consumer Expenditure Data (CX)
+					cx.txt
+
+Section Listing
+
+1.  Survey Definition
+2.  FTP files listed in the survey directory
+3.  Time series, series file, data file, & mapping file definitions and relationships
+4.  Series file format and field definitions
+5.  Data file format and field definitions
+6.  Mapping file formats and field defintions
+7.  Data Element Dictionary
+
+====================================================================================
+Section 1
+====================================================================================
+
+The following is a definition of:  Consumer Expenditure Survey (CX)
+
+Survey Description:  The Consumer Expenditure Survey collects information from 
+the Nation's households and families on their buying habits (expenditures), 
+income, and characteristics. The strength of the survey is that it allows data 
+users to relate the expenditures and income of consumers to the characteristics 
+of those consumers. 
+
+The survey consists of two components, a quarterly Interview Survey and a 
+weekly Diary Survey, each with its own questionnaire and sample.  For the 
+Diary survey, respondents complete a diary of expenses for two consecutive 
+1-week periods.  The Diary survey is designed to obtain data on frequently 
+purchased items, such as food or housekeeping supplies, that respondents 
+are less likely to recall over time.  For the Interview survey, respondents 
+report data to an interviewer.  Each sample household is interviewed once
+per quarter, for five consectutive quarters.  This survey is designed to 
+collect data on major items of expense, such as property purchases or
+vehicle purchases, and those that occur on a regular basis, such as rent
+or utility payments, that respondents recall for 3 months or longer.
+ 
+Summary Data Available:  The following types of demographic data are available; 
+average number of consumer units, percent male and female, education level, 
+age and race of reference person.  Average annual expenditures consist of 
+fourteen main categories:  Food, alcoholic beverages, housing, apparel 
+and services, transportation, health care, entertainment, personal care 
+products and services, reading, education, tobacco products and smoking 
+supplies, miscellaneous, cash contributions, and personal insurance and pensions.  
+
+Average annual expenditures, income, and characteristics 
+per consumer unit are classified by 13 characteristics: quinitles of income
+before taxes; income before taxes; age of reference person; size of consumer
+unit; composition of consumer unit; number of earners; housing tenure and
+type of area; race of reference person; Hispanic or Latino origion of 
+reference person; region of residence; occupation of reference person;
+education of reference person. 
+
+Frequency of Observations:  All data are annual.
+
+Annual Averages:  All data are based on annual averages. 
+
+Base Periods:  Not applicable.
+
+Data Characteristics:  Average annual expenditures are reported in dollars 
+and are stored with no decimal places.  Income is reported in dollars 
+and is stored with no decimal places.  Number of Consumer Units is 
+reported in thousands and is stored with no decimal places. Percent 
+distributions are stored with no decimal places.  Consumer unit 
+characteristics are reported averages and are stored with one decimal place.
+
+Updating Schedule:  Updates are done annually, usually in September.
+
+References:	BLS Handbook of Methods, Chapter 16, "Consumer Expenditures 
+		and Income".
+                Link:  http://www.bls.gov/opub/hom/homch16.htm
+
+Contact for Further Information:	Consumer Expenditure Survey Staff
+					(202) 691-6900
+
+
+====================================================================================
+Section 2
+====================================================================================
+The following Consumer Expenditure Data files are on the BLS internet in the sub-
+directory pub/time.series/cx:
+
+	cx.category			- Category codes	mapping file
+	cx.characteristics		- Characteristics codes	mapping file
+	cx.contacts			- Contacts for cx survey  
+	cx.data.1.AllData		- Data file for the specific load process
+	cx.demographics			- Demographics codes    mapping file
+	cx.footnote			- Footnote codes	mapping file
+	cx.item				- Item codes 		mapping file
+	cx.process			- Process codes		mapping file
+	cx.seasonal			- Seasonal codes	mapping file	
+	cx.series			- Series IDs for the data file
+	cx.subcategory			- Subcategory codes	mapping file
+	cx.txt				- General information
+	cx.year				- Year Codes		mapping file
+====================================================================================
+Section 3 
+====================================================================================
+The definition of a time series, its relationship to and the interrelationship
+among series, data and mapping files is detailed below:
+
+A time series refers to a set of data observed over an extended period of time
+over consistent time intervals (i.e. monthly, quarterly, semi-annually, annually).  
+BLS time series data are typically produced at monthly intervals and represent data 
+ranging from a specific consumer item in a specific geographical area whose price 
+is gathered monthly to a category of worker in a specific industry whose employment
+rate is being recorded monthly, etc.
+
+The FTP files are organized such that data users are provided with the following
+set of files to use in their efforts to interpret data files:
+
+a)  a series file (only one series file per load)
+b)  mapping files
+c)  data files
+
+The series file contains a set of codes which, together, compose a series 
+identification code that serves to uniquely identify a single time series. 
+Additionally, the series file also contains the following series-level information:
+
+a) the period and year corresponding to the first data observation 
+b) the period and year corresponding to the most recent data observation.  
+
+The mapping files are definition files that contain explanatory text descriptions
+that correspond to each of the various codes contained within each series
+identification code.
+
+The data file contains one line of data for each observation period pertaining to a
+specific time series.  Each line contains a reference to the following:
+
+a) a series identification code
+b) year in which data is observed
+c) period for which data is observed (M13, Q05, and S03 indicate annual averages)
+d) value
+e) footnote code (if available)
+====================================================================================
+Section 4
+====================================================================================
+File Structure and Format: The following represents the file format used to define
+cx.series.  Note the Field Numbers are for reference only; they do not exist in the
+database.  Data files are in ASCII text format.  Data elements are separated by 
+tabs; the first record of each file contains the column headers for the data 
+elements stored in each field.  Each record ends with a new line character. 
+
+Field #/Data Element		Length		Value(Example)		
+
+ 1.  series_id	 	 	14 TO 18	CXU080110LB0101M
+
+ 2.  seasonal	 	  	1		U
+
+ 3.  category_code		10		EXPEND 
+
+ 4.  subcategory_code		8		FOODTOTL 
+
+ 5.  item_code		   	4 TO 8		080110 
+
+ 6.  demographics_code	   	4		LB01
+
+ 7.  characteristics_code	2		01
+
+ 8.  process_code	   	1		M
+
+ 9.  series_title		256		Eggs-LB01-All Consumer Units	
+
+10.  footnote_code	   	10		It varies	
+
+11.  begin_year		   	4		1984
+
+12.  begin_period	   	3		A01	
+
+13.  end_year		   	4		2000		
+
+14.  end_period		   	3		A01	
+					
+
+The series_id (CXU080110LB0101M) can be broken out into:
+
+Code					Value(Example)
+
+survey abbreviation	=		CX
+seasonal(code)		=		U
+item_code		=		080110
+demographics_code	=		LB01
+characteristics_code	=		01
+Process_code		=		M
+
+====================================================================================
+Section 5
+====================================================================================
+File Structure and Format: The following represents the file format used to define
+each data file.  Note that the field numbers are for reference only; they do not 
+exist in the database.  Data files are in ASCII text format.  Data elements are 
+separated by tabs; the first record of each file contains the column headers for 
+the data elements stored in each field.  Each record ends with a new line character.  
+
+File Name:  cx.data.1.AllData
+
+The above-named data file has the following format:
+
+Field #/Data Element	Length		Value(Example)		
+
+1. series_id		  14 TO 18	CXUMENBOYSLB0104M
+
+2. year			   4		1984	
+
+3. period		   3		A01		
+
+4. value		  12      	35				 
+
+5. footnote_code	  10		It varies
+				
+
+The series_id (CXUMENBOYSLB0104M) can be broken out into:
+
+Code					Value(Example)
+
+survey abbreviation	=		CX
+seasonal(code)		=		U
+item_code		=		MENBOYS
+demographics_code	=		LB01
+characteristics_code	=		O4
+Process_code		=		M
+====================================================================================
+Section 6
+====================================================================================
+File Structure and Format:  The following represents the file format used to define
+each mapping file. Note that the field numbers are for reference only; they do not
+exist in the database.  Mapping files are in ASCII text format.  Data elements are
+separated by tabs; the first record of each file contains the column headers for the
+data elements stored in each field.  Each record ends with a new line character. 
+
+File Name:  cx.category
+
+Field #/Data Element		Length		Value(Example)
+
+1. category_code		10		EXPEND
+
+2. category_text	 	60		Expenditures
+
+3. display_level		2		0
+
+4. selectable			1		T
+
+5. sort_seqence			5		100
+
+
+
+File Name:  cx.subcategory
+
+Field #/Data Element		Length		Value(Example)
+
+1. category_code		10		EXPEND
+
+2. subcategory_code		8		PERSCARE
+
+3. subcategory_text	 	50		Personal care products and services
+
+4. display_level		2		0
+
+5. selectable			1		T
+
+6. sort_seqence			5		900
+
+
+
+File Name:  cx.item
+
+Field #/Data Element		Length		Value(Example)
+
+1. subcategory_code		8		ENTRTAIN
+
+2. item_code			8		PETSPLAY
+
+3. item_text			50		Pets, toys, and playground equipment
+
+4. display_level		2		1
+
+5. selectable			1		T
+
+6. sort_seqence			5		11200
+
+
+
+File Name:  cx.characteristics
+
+Field #/Data Element		Length		Value(Example)
+
+1. demographics_code		4		LB01
+
+2. characteristics_code		2		01
+
+3. characteristics_text		120		All consumer units
+
+4. display_level		2		0
+
+5. selectable			1		T
+
+6. sort_seqence			5		1010
+
+
+
+File Name:  cx.demographics
+
+Field #/Data Element		Length		Value(Example)
+
+1. demographics_code		4		LB01
+
+2. demographics_text		150		Quintiles of income before taxes
+
+3. display_level		2		0
+
+4. selectable			1		T
+
+5. sort_seqence			5		100
+
+
+
+File Name:  cx.footnote
+
+Field #/Data Element		Length		Value(Example)
+
+1. footnote_code		10		It varies
+
+2. footnote_text		250		No data reported
+
+
+
+File Name:  cx.process
+
+Field #/Data Element		Length		Value(Example)
+
+1. process_code			1		M
+
+2. process_text			30		Means
+
+4. display_level		2		0
+
+5. selectable			1		T
+
+6. sort_seqence			5		100
+
+
+
+File Name:  cx.seasonal
+
+Field #/Data Element		Length		Value(Example)
+
+1. seasonal			1		U
+
+2. seasonal_text		30		Seasonally Unadjusted
+
+
+
+File Name:  cx.year
+
+Field #/Data Element		Length		Value(Example)
+
+1. year				4		2001
+
+
+====================================================================================
+Section 7
+====================================================================================
+
+CONSUMER EXPENDITURE DATA (CX) DATABASE ELEMENTS
+
+
+Data Element		Length	Value(Example)			Description
+
+begin_period		3	A01			Identifies first data observation
+				(A01=Annual data)	within the first year for which
+				 			data is available for a given time
+				 			series.
+				
+begin_year		4	1999			Identifies first year for which
+							data is available for a given
+
+category_code		10	EXPEND			Identifies the category code for 
+                                                        the dataseries.
+
+category_text		60	Text			Contains the text of the category.
+
+characteristics_code	2	01			Identifies the characteristics code
+                                                        for the data series.
+
+characteristics_text	120	Text			Contains the text of the charateristics.
+  
+display_level		2	0			Used to display hierarchical data 
+                                (0=No indentation)      by adding indentations to the area 
+                                                        descriptions.
+
+end_period		3	A01			Identifies last data observation   
+				(A01= Annual data)	within the last year for which
+							data is available for a given
+							time series.
+
+end_year		4	2002			Identifies last year for which 
+							data is available for a given
+							time series.
+			
+footnote_code	  	10	It varies		Identifies footnote for the 
+							data series.
+							
+footnote_text		250	Text			Contains the text of 
+							the footnote.
+
+item_code		8	PETSPLAY		Identifies item for which
+ 					 		data observations pertain.
+
+item_text		50	Text			Describes item.
+
+period			3	A01			Identifies period for which
+				(A01=Annual data)	data is observed. 
+
+process_code            1       M                       Identifies process for which
+				(M=Means)		data is observed. 
+
+process_text		30	Text			Contains the text of the process.
+					
+seasonal		1	U			Code identifying whether the 
+				(U=Unadjusted)		data are seasonally adjusted.
+				
+selectable              1       T                       Used to distinguish between standard 
+                                (T=can be selected)     data and title information.
+
+series_id		18	CXU080110LB0101M	Code identifying the specific series.
+
+sort_sequence		5       100                     Identifies Order in which the items 
+                                                        should be displayed
+
+subcategory_code	8	APPAREL			Identifies the subcategory code for 
+                                                        the dataseries.
+								
+value			12	275			Observation for the series. 
+				
+year			4	2001			Identifies year of observation.
+

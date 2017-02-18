@@ -1,0 +1,24 @@
+category_code	subcategory_code	subcategory_text	column_text	display_level	selectable	sort_sequence
+ADDENDA	CHGASLI	Net change in total assets and liabilities	0	T	10900	
+ADDENDA	TITLEOFI	Other financial informations:	0	T	11000	
+CUCHARS	CONSUNIT	Number of consumer units (in thousands)	0	T	11100	
+CUCHARS	TITLECU	Consumer unit characteristics:	0	T	11200	
+CUCHARS	TITLEPD	Percent distribution:	0	T	11300	
+EXPEND	ALCBEVG	Alcoholic beverages	0	T	300	
+EXPEND	APPAREL	Apparel and services	0	T	500	
+EXPEND	CASHCONT	Cash contributions	0	T	10400	
+EXPEND	EDUCATN	Education	0	T	10100	
+EXPEND	ENTRTAIN	Entertainment	0	T	800	
+EXPEND	FOODTOTL	Food	0	T	200	
+EXPEND	HEALTH	Healthcare	0	T	700	
+EXPEND	HOUSING	Housing	0	T	400	
+EXPEND	INSPENSN	Personal insurance and pensions	0	T	10500	
+EXPEND	MISC	Miscellaneous expenditures	0	T	10300	
+EXPEND	PERSCARE	Personal care products and services	0	T	900	
+EXPEND	READING	Reading	0	T	1000	
+EXPEND	TOBACCO	Tobacco products and smoking supplies	0	T	10200	
+EXPEND	TOTALEXP	Total average annual expenditures	0	T	100	
+EXPEND	TRANS	Transportation	0	T	600	
+INCOME	INCAFTTX	Income after taxes	0	T	10800	
+INCOME	INCBEFTX	Money income before taxes	0	T	10600	
+INCOME	PERSTAX	Personal taxes	0	T	10700	
