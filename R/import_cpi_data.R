@@ -13,7 +13,7 @@ CUITEM <-read_tsv("BLSdatabases/cu.item")  # Warnings
 # so there are two series_ids which differ in the 3rd from last characters
 # they are two different "items"
 
-CPIU %>%
+CUALLITEMS %>%
   count(year, period, series_id) %>%
   filter(n>1)
 
