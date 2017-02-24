@@ -9,7 +9,7 @@
 
 feature_items <- c("SA0", "SA0E", "SAH1", "SAF1", "SETB01") #All, energy, food, shelter, gasoline
 
-CUITEM %>%
+cu_item %>%
   filter(item_code %in% feature_items)
 
 #item_code            item_name display_level selectable sort_sequence
@@ -20,7 +20,7 @@ CUITEM %>%
 #4      SAH1              Shelter             1       TRUE           137
 #5    SETB01 Gasoline (all types)             3       TRUE           222
 
-CUSERIES %>%
+cu_series %>%
   filter(area_code == "0000",           #U.S. city average
          item_code %in% feature_items,
          base_period == "1982-84=100",
@@ -45,7 +45,7 @@ CUSERIES %>%
 
 
 # The CPI for All Urban Consumers (CPI-U) increased 0.3 percent in December on a seasonally adjusted basis.
-CUDATA %>%
+cu_data %>%
   filter(series_id == "CUSR0000SA0",
          year == 2016,
          period %in% c("M11", "M12")) %>%
@@ -57,7 +57,7 @@ CUDATA %>%
 ###########################
 
 # over the last 12 months, the all items index rose 2.1 percent before seasonal adjustment.
-CUDATA %>%
+cu_data %>%
   filter(series_id == "CUUR0000SA0",
          year %in% 2000:2016,
          period == "M12") %>%
@@ -70,14 +70,14 @@ CUDATA %>%
 
 #Continuing their recent trends, shelter and gasoline indexes increased in December and were largely responsible for the seasonally adjusted all items increaes. Shelter rose 0.3% in Dec, gasoline increased 3.0%. Food index was unchanged, and energy index advanced 1.5% in December, primarily due to the gasoline index.
 
-CUDATA %>%
+cu_data %>%
   filter(series_id %in% c("CUSR0000SA0E", "CUSR0000SAF1", "CUSR0000SAH1", "CUSR0000SETB01"),
          year == 2016,
          period %in% c("M11", "M12")) %>%
   group_by(series_id) %>%
   mutate(month_chg = 100 * (value / lag(value) - 1)) %>%
-  left_join(select(CUSERIES, series_id, item_code), by = "series_id") %>%
-  left_join(select(CUITEM, item_code, item_name), by = "item_code") %>%
+  left_join(select(cu_series, series_id, item_code), by = "series_id") %>%
+  left_join(select(cu_time, item_code, item_name), by = "item_code") %>%
   select(series_id, item_name, year, period, month_chg)
 
 # Values match paragraph above

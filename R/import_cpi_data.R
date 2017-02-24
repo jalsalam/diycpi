@@ -13,10 +13,9 @@ cu_item <-read_tsv("BLSdatabases/cu.item")  # Warnings
 # so there are two series_ids which differ in the 3rd from last characters
 # they are two different "items"
 
-CUALLITEMS %>%
+cu_all_items %>%
   count(year, period, series_id) %>%
   filter(n>1)
-
 
 # Note: 1496 or 1486 series in each year/period
 # odd period: 1496, even period: 1486
@@ -24,17 +23,17 @@ CUALLITEMS %>%
 # Note: The series are not mutually exclusive
 # There are different sets of mutually exclusive series depending on how far one aggregates
 
-CUDATA %>%
+cu_data %>%
   count(year, period, series_id) %>%
   filter(n>1)
 
 # information about the series
-CUSERIES %>%
+cu_series %>%
   count(series_id) %>%
   filter(n>1)
 
 # item_id is the last 3 characters of the series_id (I believe)
 # descriptive labels
-CUITEM %>%
+cu_item %>%
   count(item_code) %>%
   filter(n>1)
