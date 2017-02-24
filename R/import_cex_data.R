@@ -24,6 +24,12 @@ assert_that(nrow(
 #I don't know whether or not assert_that is better than stopifnot
 #both of these are functions that do error-check and stop execution if they are not fulfilled, which seems to fit the primary key checks.
 
+#try 2. this is much better code. Error message not good though.
+cx_all_data %>%
+  count(series_id, year) %>%
+  filter(n>1) %>%
+  {assert_that(nrow(.)==0)}
+
 
 cx_series %>% 
   count(series_id) %>%  # verified
