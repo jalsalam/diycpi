@@ -5,9 +5,9 @@
 #load libraries, function files, etc
 source('R/setup.R')
 
-#read in CES data
-source('R/read_ces_fns.R')
-source('R/read_ces_data.R')
+#read in CES and CPI data
+source('R/import_cex_data.R')
+source('R/import_ces_data.R.R')
 
-#do a calc based on it
-source('R/calc.R', echo=TRUE)
+#do some calculations based on the data
+source('R/calc_CPI_1.R', echo=TRUE) #reproduce some values from CPI detailed report
