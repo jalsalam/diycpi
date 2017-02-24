@@ -31,9 +31,10 @@ cx_subcategory %>%  # category_code (EXPEND, INCOME, CUCHARS, ADDENDA)
   filter(n>1)
 
 # =============================================================================================
-# Create data table of expenditure breakdown
+# Create data table of expenditure breakdown by year with shares
 # display_level==0 has 15 categories
-# diplay_level==1 has 26 categories but is missing display_level==0 categories with no subcategories such as alcohol, education
+# display_level==1 has 26 categories but is missing display_level==0 categories with no subcategories such as alcohol, education
+# combining both of those double counts some expenditures
 # rows: category_code == "EXPEND" & demographics_code == "LB01" & characteristics_code == "01"
 # variables: subcategory_code, year, value
 
@@ -46,10 +47,18 @@ our_data <- filter(
   category_code == "EXPEND" & 
   demographics_code == "LB01" & 
   characteristics_code == "01" &
-  (display_level==0 | display_level==1) &
-  year==2015) %>%
-    arrange(sort_sequence) %>%
-      select(series_id, item_text, value)
+  (display_level==0 | display_level==1) &  # some double counting
+  (year==2014 | year==2015)) %>%
+    arrange(year, sort_sequence) %>%
+      select(year, series_id, item_text, value) %>%
+      group_by(year) %>%   
+      mutate(share_denom = value[1]) %>%
+      mutate(expenditure_share=value/share_denom)  
+# success! we now have expenditures share for 2014 & 2015 
+# next step is to multiply these shares by the price changes and add-up
+# well we do have to solve the double counting problem
+# i.e. we have to find a better than display_level to identify unduplicated expenditure categories
+
 # ===========================================================================================
 
 # goal: try to reproduce relative importance numbers
