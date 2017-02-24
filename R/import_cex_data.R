@@ -1,11 +1,33 @@
 # import CEX data
 
 cx_all_data <- read_tsv("BLSDatabases/cx.data.1.AllData")
-cx_characteristics <- read_tsv("BLSDatabases/cx.characteristics")
-cx_demographics <- read_tsv("BLSDatabases/cx.demographics")
 cx_series <- read_tsv("BLSDatabases/cx.series")
 cx_item <- read_tsv("BLSDatabases/cx.item")
+cx_characteristics <- read_tsv("BLSDatabases/cx.characteristics")
+cx_demographics <- read_tsv("BLSDatabases/cx.demographics")
 cx_subcategory <- read_tsv("BLSDatabases/cx.subcategory")
+
+# verify primary keys
+cx_all_data %>%
+  count(series_id, year) %>%  # verified; value
+  filter(n>1)
+cx_series %>%
+  count(series_id) %>%  # verified; category_code, subcategory_code, item_code, demographics_code, characteristics code
+  filter(n>1)
+cx_item %>%
+  count(item_code) %>%  # verified; subcategory_code, item_code, item_text
+  filter(n>1)
+cx_demographics %>% # demographics_code = variable
+  count(demographics_code) %>%  # verified; demographics_text
+  filter(n>1)
+cx_characteristics %>% # demographics_code = variable; char.._code = value
+  count(demographics_code, characteristics_code) %>%  # verified; characteristics_text  
+  filter(n>1)
+cx_subcategory %>%  # category_code (EXPEND, INCOME, CUCHARS, ADDENDA) 
+  count(subcategory_code) %>%  # verified; subcategory_text
+  filter(n>1)
+
+
 
 # goal: try to reproduce relative importance numbers
 
@@ -53,5 +75,18 @@ x <- cx_item %>%
   filter(subcategory_code=="EDUCATN")
 x <- x %>%
   arrange(sort_sequence)
+
+# ==================
+# mega data approach
+
+all_all_data <- cx_all_data %>%
+  left_join(cx_series, by = fill in) %>%
+  left_join(cx_item, by = fill in) %>% etc adding fields from other tables as necessary...
+
+our_data <- all_all_data %>%
+  filter(year == 2015,
+         display_level == 0, etc)
+
+
 
 
