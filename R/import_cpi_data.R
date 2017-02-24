@@ -2,10 +2,10 @@
 # assumes files have been downloaded to a BLSDatabases folder
 # orgina source data location: https://download.bls.gov/pub/time.series/cu/
 
-CUALLITEMS <- read_tsv("BLSdatabases/cu.data.1.AllItems")
-CUDATA <- read_tsv("BLSdatabases/cu.data.0.Current")
-CUSERIES <-read_tsv("BLSdatabases/cu.series")
-CUITEM <-read_tsv("BLSdatabases/cu.item")  # Warnings 
+cu_all_items <- read_tsv("BLSdatabases/cu.data.1.AllItems")
+cu_data <- read_tsv("BLSdatabases/cu.data.0.Current")
+cu_series <-read_tsv("BLSdatabases/cu.series")
+cu_item <-read_tsv("BLSdatabases/cu.item")  # Warnings 
 
 # verify primary keys
 
