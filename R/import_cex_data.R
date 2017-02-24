@@ -46,9 +46,10 @@ our_data <- filter(
   category_code == "EXPEND" & 
   demographics_code == "LB01" & 
   characteristics_code == "01" &
-  display_level==1 &
+  (display_level==0 | display_level==1) &
   year==2015) %>%
-    arrange(sort_sequence)
+    arrange(sort_sequence) %>%
+      select(series_id, item_text, value)
 # ===========================================================================================
 
 # goal: try to reproduce relative importance numbers
