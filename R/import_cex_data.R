@@ -12,6 +12,19 @@ cx_all_data %>%
   count(series_id, year) %>%  # verified
   # value
   filter(n>1)
+
+#alternative of primary key check:
+assert_that(nrow(
+  cx_all_data %>%
+    count(series_id, year) %>%
+    filter(n>1) 
+  ) == 0)
+
+#right now this is an awkward combination of pipes and nesting. I want to figure out how to make it better
+#I don't know whether or not assert_that is better than stopifnot
+#both of these are functions that do error-check and stop execution if they are not fulfilled, which seems to fit the primary key checks.
+
+
 cx_series %>% 
   count(series_id) %>%  # verified
   # category_code, subcategory_code, item_code, demographics_code, characteristics code
