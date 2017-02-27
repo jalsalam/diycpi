@@ -3,6 +3,7 @@
 cx_all_data <- read_tsv("BLSDatabases/cx.data.1.AllData")
 cx_series <- read_tsv("BLSDatabases/cx.series")
 cx_item <- read_tsv("BLSDatabases/cx.item")
+cx_item.xls <- write_excel_csv(cx_item, path="output/cx_item.csv")  # source for creating an unduplicated list of items
 cx_characteristics <- read_tsv("BLSDatabases/cx.characteristics")
 cx_demographics <- read_tsv("BLSDatabases/cx.demographics")
 cx_subcategory <- read_tsv("BLSDatabases/cx.subcategory")
