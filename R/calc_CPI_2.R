@@ -23,6 +23,7 @@ cu_data_current %>%
   spread(item_code, value) %>% View()
 
 #2016 year-average value for SAH1 is 288.230, meaning that shelter cost increased by +188% since 1982-84.
+# Nabeel:  I am pretty sure you need to take ratios.  288.230/100 = 2.882 so the shelter cost increased 288%
 
 #To compare, Robert Shiller's 20-city house price index went up by +260% from 1983-current. So the housing price index is about 1/3 higher than the shelter cost index. Since housing is 40% of the index, this seems like a noticable difference.
 #Link to Shiller housing data here: http://www.econ.yale.edu/~shiller/data/Fig3-1.xls (from : http://www.econ.yale.edu/~shiller/data.htm)
