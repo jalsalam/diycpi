@@ -18,7 +18,29 @@ riw_1998 <- read_fwf("https://www.bls.gov/cpi/cpiri/usri98.txt", fwf_positions(c
    filter(!is.na(item_text))  # blank lines dropped
 riw_2016 <- read_fwf("https://www.bls.gov/cpi/usri_2016.txt", fwf_positions(c(1, 55, 63), c(54, 64, 77), c("item_text", "riw_cpiu", "riw_cpiw")), skip = 14) %>%
   filter(!is.na(item_text)) %>%  # blank lines dropped
-  mutate(item_text = gsub("\\.+", "", item_text)) %>% # get rids of periods (leading blanks automatically dropped during read)
-  mutate(item_text = toupper(item_text)) # convert to uppercase
+  mutate(item_text = gsub("\\.+", "", item_text)) 
+
+  # Turn out the cu_time file below is not in upper case
+  # %>% # get rids of periods (leading blanks automatically dropped during read)
+  $ mutate(item_text = toupper(item_text)) # convert to uppercase
   
 # Now I need to find a file to with item_text & item_code so that item_code can be added to the 1997 & latter RIW files
+cu_item <- read_tsv("https://download.bls.gov/pub/time.series/cu/cu.item")
+
+riw_2016 <- riw_2016 %>%
+  left_join(cu_item, by = c("item_text" = "item_name"))
+# Argh. Several of the item_text lines in riw_2016 wrap.  They need to be unwrapped to get the join to work completely.
+
+# Archive -- naming convention is not consistent
+# furthermore, there are two versions of several years' RIWs. 
+
+https://www.bls.gov/cpi/cpiriar.htm
+           
+https://www.bls.gov/cpi/cpiri/cpiri03-04_2005.txt
+https://www.bls.gov/cpi/cpiri/usri2002.txt
+https://www.bls.gov/cpi/cpiri/cpiri93-95_2001.txt
+https://www.bls.gov/cpi/cpiri/cpiri98-00_2001.txt
+https://www.bls.gov/cpi/cpiri/usri2000.txt
+https://www.bls.gov/cpi/cpiri/usri1999.txt
+https://www.bls.gov/cpi/cpiri/usri98.txt
+
