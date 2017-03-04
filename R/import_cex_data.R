@@ -3,7 +3,11 @@
 cx_all_data <- read_tsv("BLSDatabases/cx.data.1.AllData")
 cx_series <- read_tsv("BLSDatabases/cx.series")
 cx_item <- read_tsv("BLSDatabases/cx.item")
-cx_item.xls <- write_excel_csv(cx_item, path="output/cx_item.csv")  # source for creating an unduplicated list of items
+
+write_excel_csv(cx_item, path="output/cx_item.csv")  # source for creating an unduplicated list of items, uploaded to docs.google
+url <- "docs.google.com/spreadsheets/d/1mdDQrNVWDnEG_OMxCTMTz3-wrrziXN2QqJcW_1OYhys"  # sharing link
+cx_item <- read_csv(construct_download_url(url), skip = 1) # un_dup_1 is most detail, un_dup_2 has less
+
 cx_characteristics <- read_tsv("BLSDatabases/cx.characteristics")
 cx_demographics <- read_tsv("BLSDatabases/cx.demographics")
 cx_subcategory <- read_tsv("BLSDatabases/cx.subcategory")
@@ -67,14 +71,19 @@ our_data <- filter(
   category_code == "EXPEND" & 
   demographics_code == "LB01" & 
   characteristics_code == "01" &
-  (display_level==0 | display_level==1) &  # some double counting
-  (year==2014 | year==2015)) %>%
+  year == 2015 & 
+  un_dup_1 == 1 # Unduplicated items; the test will be if the shares of total expenditures add to 1
+                ) %>%
     arrange(year, sort_sequence) %>%
-      select(year, series_id, item_text, value) %>%
+      select(year, series_id, item_text, value, un_dup_1) %>%
       group_by(year) %>%   
       mutate(share_denom = value[1]) %>%
       mutate(expenditure_share=value/share_denom)  
-# success! we now have expenditures share for 2014 & 2015 
+
+sum(our_data["expenditure_share"]) # Oops! Should add to 2, they add to 2.02; something is duplicated
+sum(our_data["value"]) # Oops! Should add to 55978, they don't
+
+# We now have expenditures share for 2014 & 2015 
 # next step is to multiply these shares by the price changes and add-up
 # well we do have to solve the double counting problem
 # i.e. we have to find a better than display_level to identify unduplicated expenditure categories
@@ -128,3 +137,7 @@ x <- cx_item %>%
 x <- x %>%
   arrange(sort_sequence)
 
+# do CX_itmes & cu_items line up? 
+# NO! Their codes are completely different
+cx_item <- read_tsv("BLSDatabases/cx.item")
+cu_item <- read_tsv("BLSDatabases/cu.item")
