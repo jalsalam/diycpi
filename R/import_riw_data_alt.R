@@ -59,4 +59,48 @@ riw_2016_table <-
 
 #STATUS: it looks like this basically worked. There is one item that didn't match, but it is "unsampled" which I think means no data. Anyway, too much work, and not perfect, but something.
 
+#######################
 
+# Converting the above to be a function
+
+year <- 2016
+
+read_riw_file <- function(year) {
+  riw_filename <- paste('BLSdatabases/usri_', year, '.txt', sep="")
+  
+  riw_table <- read_table(riw_filename, skip = 15, na = "",
+             col_names = c('ex_cat_raw', 'cpiu', 'cpiw'),
+             col_types = "cdd") %>%
+    
+    mutate(ex_cat = str_trim(str_replace_all(ex_cat_raw, '\\.', ''))) %>%
+    mutate(ex_cat = 
+             if_else(is.na(lag(cpiu)) & is.na(lag(cpiw)) & !is.na(lag(ex_cat)), 
+                     str_c(lag(ex_cat), ex_cat, sep=" "), 
+                     ex_cat)) %>%
+    mutate(ex_cat = str_trim(ex_cat)) %>% #whitespace was messing up some matches
+    filter(!is.na(cpiu) | !is.na(cpiw)) %>%
+    select(ex_cat, cpiu, cpiw) %>%
+    rename(item_name = ex_cat) %>%
+    mutate(riw_year = year) %>%
+    left_join(item_name_lookup, by = "item_name") %>%
+    group_by(item_name, item_code, riw_year) %>% slice(1) %>% #if duplicate names, take first one
+    ungroup()
+  
+  riw_table #return this
+}
+
+#I manually downloaded these into BLSdatabases and named according to isri_XXXX.txt
+riw_2016 <- read_riw_file(2016)
+riw_2010 <- read_riw_file(2010)
+riw_2002 <- read_riw_file(2002)
+
+#OR... the fancy map way
+
+riw_all <- map_df(c(2016, 2010, 2002), read_riw_file)
+
+# now to compare cpiu weights across years
+
+riw_comp <- riw_all %>%
+  select(item_code, item_name, riw_year, cpiu) %>%
+  mutate(riw_year = as.character(riw_year)) %>%
+  spread(riw_year, cpiu)
