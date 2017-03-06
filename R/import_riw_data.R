@@ -12,6 +12,37 @@ riw_1987 <- read_fwf("https://www.bls.gov/cpi/cpiri/usri1987.txt", fwf_widths(c(
 # How does one create a loop where the loop variable is used to change the name of a file or of an R table/tibble?
 # I want to loop through the years 1987 to 1996.
 
+###########
+
+#Jameel: try out this progression:
+c(1987:1996)
+paste('usri_', c(1987:1996), '.txt', sep = "")
+riw_file_list <- paste('usri_', c(1987:1996), '.txt', sep = "")
+
+### To do the same thing to each element of a list, read about the map() family of functions from the purrr package.
+#Check out: http://r4ds.had.co.nz/iteration.html
+#My quickie examples:
+
+# Basic math using the map() approach:
+nums <- c(1:10)
+
+map_dbl(nums, ~.x^2) #"anonymous function" approach
+
+fn_ex <- function(mynum){
+  mynum^2 + mynum -7
+}
+
+map_dbl(nums, fn_ex) #using a longer function previously defined
+
+#so how to apply it to this problem? something like:
+read_riw_file <- function(filename) {
+  read_fwf(filename, fwf_positions(c(1, 52, 64), c(51, 63, 70), c("item_name", "riw_cpiu", "riw_cpiw")), skip = 23)
+}
+
+riw_file_list_with_path <- paste('BLSDatabases/usri_', c(1987:1996), '.txt', sep = "")
+list_of_riw_tables <- map(riw_file_list_with_path, read_riw_file) #I haven't downloaded the files, so I haven't tested. Even if it works, it will return a clunk "list" of the tibbles, which isn't really what you want. I don't know how to construct the names of the objects using the index, e.g., riw_new1997, etc, but we can come up with better ways to store this data anyway. The vintage should just be one of the columns, and all the values should be in one. In any case, focus on writing a function which works on one example, and apply it to lots is the easy part.
+
+#############
 
 riw_new1997 <- read_fwf("https://www.bls.gov/cpi/cpiri/usrinew97.txt", fwf_positions(c(1, 52, 64), c(51, 63, 70), c("item_name", "riw_cpiu", "riw_cpiw")), skip = 23)
 riw_1998 <- read_fwf("https://www.bls.gov/cpi/cpiri/usri98.txt", fwf_positions(c(1, 55, 63), c(54, 64, 77), c("item_name", "riw_cpiu", "riw_cpiw")), skip = 14) %>%
