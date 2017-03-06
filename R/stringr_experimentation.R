@@ -69,3 +69,14 @@ phone <- regex("
                ", comments = TRUE)
 
 str_match("(514) 791-8141", phone)
+
+################
+
+str_match(riw_strings$ex_cat_raw, "(^.+?)(\\.{3,}$)") #first group is beginning of string and whatever characters (matched minimally) second group is at least three dots and the end of the string.
+
+riw_strings <- 
+  read_table('BLSdatabases/usri_2016.txt', skip = 15, #na = "",
+             col_names = c('ex_cat_raw', 'cpiu', 'cpiw')) %>%
+  mutate(start_len = str_length(ex_cat_raw)) %>%
+  mutate(thegroups = str_match_all(ex_cat_raw, "(^.+?)(\\.{3,}$)"))  %>%
+  mutate(ex_cat = str_match(ex_cat_raw, "(^.+?)(\\.{3,}$)")[,2])
