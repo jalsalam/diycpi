@@ -9,5 +9,5 @@ library("tidyverse")
 library("readxl")
 library("testthat") # for unit testing functions
 library("assertthat") #for error-checking
-library("gsheet") # for reading google sheets using the sharing URL
-library("stringr") #string manipulation functions
+library("gsheet") # for reading google sheets using the sharing URL. JRA: really necessary?
+library("stringr") #string manipulation functions, installed in tidyverse but not loaded by default

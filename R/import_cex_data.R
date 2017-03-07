@@ -1,6 +1,31 @@
 # import CEX data
 
+cx_files <- tibble(
+  name = c("cx_all_data", "cx_series", "cx_item", "cx_characteristics", "cx_demographics", "cx_subcategory"),
+  file = c("cx.data.1.AllData", "cx.series", "cx.item", "cx.characteristics", "cx.demographics", "cx.subcategory")
+) %>%
+  mutate(url = str_c("https://download.bls.gov/pub/time.series/cx/", file),
+         filepath = str_c("BLSdatabases/", file))
+
+#check if files already in folder, download, and report successes/failures
+cx_status <- cx_files %>%
+  filter(!file.exists(filepath)) %>%
+  by_row(~download.file(.$url, .$filepath), .to = "status") 
+
+if (nrow(cx_status) > 0) {
+  cx_status %<>%
+  mutate(msg = if_else(status==0,
+                       str_c(file, " successfully downloaded."),
+                       str_c(file, " failed to download."))) %>%
+    by_row(~print(.$msg))
+} else {
+  print("All files found already, so none downloaded.")
+}
+
+#I haven't figured out yet how to programmatically read in the files
+
 cx_all_data <- read_tsv("BLSDatabases/cx.data.1.AllData")
+assign("cx_all_data", read_tsv("BLSDatabases/cx.data.1.AllData")) #works for one...
 cx_series <- read_tsv("BLSDatabases/cx.series")
 cx_item <- read_tsv("BLSDatabases/cx.item")
 
