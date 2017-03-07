@@ -2,6 +2,7 @@
 
 cx_files <- tibble(
   name = c("cx_all_data", "cx_series", "cx_item", "cx_characteristics", "cx_demographics", "cx_subcategory"),
+  name2 = c("data", "series", "item", "characteristics", "demographics", "subcategory"),
   file = c("cx.data.1.AllData", "cx.series", "cx.item", "cx.characteristics", "cx.demographics", "cx.subcategory")
 ) %>%
   mutate(url = str_c("https://download.bls.gov/pub/time.series/cx/", file),
@@ -22,8 +23,24 @@ if (nrow(cx_status) > 0) {
   print("All files found already, so none downloaded.")
 }
 
-#I haven't figured out yet how to programmatically read in the files
+##########
+# Three ways to create the variables programmatically:
 
+#1: This way reads in all the files as a list of dataframes. This is probably less convenient. It stores the data in a single object, you need to access it differently, and its harder to view.
+cx <- cx_files$filepath %>%
+  map(~read_tsv(.)) %>%
+  set_names(nm = cx_files$name2)
+
+View(cx$item)
+
+#2: This way creates the variables using walk2. setting the correct environment was messing me up
+walk2(cx_files$name, cx_files$filepath, ~assign(.x, read_tsv(.y), envir = .GlobalEnv))
+
+#3: very similar to above, but same thing, but using df keeps the various values together a little better
+by_row(cx_files, ~assign(.$name, read_tsv(.$filepath), envir = .GlobalEnv))
+
+
+########### These now sort of not necessary
 cx_all_data <- read_tsv("BLSDatabases/cx.data.1.AllData")
 assign("cx_all_data", read_tsv("BLSDatabases/cx.data.1.AllData")) #works for one...
 cx_series <- read_tsv("BLSDatabases/cx.series")
@@ -36,6 +53,9 @@ cx_item <- read_csv(construct_download_url(url), skip = 1) # un_dup_1 is most de
 cx_characteristics <- read_tsv("BLSDatabases/cx.characteristics")
 cx_demographics <- read_tsv("BLSDatabases/cx.demographics")
 cx_subcategory <- read_tsv("BLSDatabases/cx.subcategory")
+
+
+#############
 
 # verify primary keys
 cx_all_data %>%
