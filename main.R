@@ -4,6 +4,9 @@
 
 #load libraries, function files, etc
 source('R/setup.R')
+source('R/import_fns.R') # most not yet ready for primetime.
+# get_bls_tables() # downloads all of 'em
+# get_bls_tables("cu_item") # downloads one
 
 #read in CES and CPI data
 source('R/import_cex_data.R')
