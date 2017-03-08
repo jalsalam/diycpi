@@ -11,3 +11,6 @@
 # Both are good ideas, let's talk
 #Jameel's second change was more questionable.
 #This will result in an extra "merge commit"
+
+#3 - Jameel will change/commit/push. Nabeel will change/(not commit)/pull FF if possible.
+#[change this line]
