@@ -14,3 +14,5 @@
 
 #3 - Jameel will change/commit/push. Nabeel will change/(not commit)/pull FF if possible.
 #Jameel returns to form, another good change!
+
+#4 - Jameel will change/commit/push. Nabeel will change/(not commit)/stash/pull/pop
