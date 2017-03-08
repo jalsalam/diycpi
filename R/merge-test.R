@@ -7,5 +7,5 @@
 #I think this will result in a stash
 
 #Then here, Jameel will change/commit/push. Then Nabeel will change/commit/push. This will give error. So you will pull and it will report merge conflicts. You will resolve the merge conflicts, commit/push.
-#[Change this line #2]
+#Jameel's second change was more questionable.
 #This will result in an extra "merge commit"
