@@ -54,8 +54,13 @@ cx_characteristics <- read_tsv("BLSDatabases/cx.characteristics")
 cx_demographics <- read_tsv("BLSDatabases/cx.demographics")
 cx_subcategory <- read_tsv("BLSDatabases/cx.subcategory")
 
-
-#############
+###########################################################
+# 4 variables added to cx.item : un_dup_0 - un_dup_3 corresponding to display level 0-3
+# each brings in more detail from the expenditures data
+# total expenditures is tagged in each of those
+# the values in each should sum to twice expenditures except for errors & rounding
+cx_item <- read_tsv("BLSDatabases/cx_edited.item", skip = 1)
+#############################################################
 
 # verify primary keys
 cx_all_data %>%

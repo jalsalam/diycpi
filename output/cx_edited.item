@@ -1,0 +1,156 @@
+			15	34	62	79			
+subcategory_code	item_code	item_text	up_dup_0	un_dup_1	un_dup_2	un_dup_3	display_level	selectable	sort_sequence
+TOTALEXP	TOTALEXP	Total average annual expenditures	1	1	1	1	0	TRUE	1000
+FOODTOTL	FOODTOTL	Food	1	0	0	0	0	TRUE	2600
+FOODTOTL	FOODHOME	Food at home	0	1	0	0	1	TRUE	2700
+FOODTOTL	CERBAKRY	Cereals and bakery products	0	0	1	0	2	TRUE	2800
+FOODTOTL	CEREAL	Cereals and cereal products	0	0	0	1	3	TRUE	2900
+FOODTOTL	BAKERY	Bakery products	0	0	0	1	3	TRUE	3000
+FOODTOTL	ANIMAL	Meats, poultry, fish, and eggs	0	0	1	0	2	TRUE	3100
+FOODTOTL	BEEF	Beef	0	0	0	1	3	TRUE	3200
+FOODTOTL	PORK	Pork	0	0	0	1	3	TRUE	3300
+FOODTOTL	OTHRMEAT	Other meats	0	0	0	1	3	TRUE	3400
+FOODTOTL	POULTRY	Poultry	0	0	0	1	3	TRUE	3500
+FOODTOTL	FISHSEA	Fish and seafood	0	0	0	1	3	TRUE	3600
+FOODTOTL	80110	Eggs	0	0	0	1	3	TRUE	3700
+FOODTOTL	DAIRY	Dairy products	0	0	1	0	2	TRUE	3800
+FOODTOTL	MILKCRM	Fresh milk and cream	0	0	0	1	3	TRUE	3900
+FOODTOTL	OTHDAIRY	Other dairy products	0	0	0	1	3	TRUE	4000
+FOODTOTL	FRUITVEG	Fruits and vegetables	0	0	1	0	2	TRUE	4100
+FOODTOTL	FRSHFRUT	Fresh fruits	0	0	0	1	3	TRUE	4200
+FOODTOTL	FRESHVEG	Fresh vegetables	0	0	0	1	3	TRUE	4300
+FOODTOTL	PROCFRUT	Processed fruits	0	0	0	1	3	TRUE	4400
+FOODTOTL	PROCVEG	Processed vegetables	0	0	0	1	3	TRUE	4500
+FOODTOTL	OTHRFOOD	Other food at home	0	0	1	0	2	TRUE	4600
+FOODTOTL	SWEETS	Sugar and other sweets	0	0	0	1	3	TRUE	4700
+FOODTOTL	FATSOILS	Fats and oils	0	0	0	1	3	TRUE	4800
+FOODTOTL	MISCFOOD	Miscellaneous foods	0	0	0	1	3	TRUE	4900
+FOODTOTL	NALCBEVG	Nonalcoholic beverages	0	0	0	1	3	TRUE	5000
+FOODTOTL	190904	Food prep. by consumer unit, out-of-town trips	0	0	0	1	3	TRUE	5100
+FOODTOTL	FOODAWAY	Food away from home	0	1	1	1	1	TRUE	5200
+ALCBEVG	ALCBEVG	Alcoholic beverages	1	1	1	1	0	TRUE	5300
+HOUSING	HOUSING	Housing	1	0	0	0	0	TRUE	5400
+HOUSING	SHELTER	Shelter	0	1	0	0	1	TRUE	5500
+HOUSING	OWNDWELL	Owned dwellings	0	0	1	0	2	TRUE	5600
+HOUSING	OWNMORTG	Mortgage interest and charges	0	0	0	1	3	TRUE	5700
+HOUSING	220211	Property taxes	0	0	0	1	3	TRUE	5800
+HOUSING	OWNEXPEN	Maintenance, rep., ins., oth. exp., owned dwelling	0	0	0	1	3	TRUE	5900
+HOUSING	RNTDWELL	Rented dwellings	0	0	1	1	2	TRUE	6000
+HOUSING	OTHLODGE	Other lodging	0	0	1	1	2	TRUE	6100
+HOUSING	UTILS	Utilities, fuels, and public services	0	1	0	0	1	TRUE	6200
+HOUSING	NATRLGAS	Natural gas	0	0	1	1	2	TRUE	6300
+HOUSING	ELECTRIC	Electricity	0	0	1	1	2	TRUE	6400
+HOUSING	OTHRFUEL	Fuel oil and other fuels	0	0	1	1	2	TRUE	6500
+HOUSING	PHONE	Telephone services	0	0	1	1	2	TRUE	6600
+HOUSING	RESPHONE	Residential phone service, VOIP, and phone cards	0	0	1	1	2	TRUE	6630
+HOUSING	270102	Cellular phone service	0	0	1	1	2	TRUE	6650
+HOUSING	WATER	Water and other public services	0	0	1	1	2	TRUE	6700
+HOUSING	HHOPER	Household operations	0	1	0	0	1	TRUE	6800
+HOUSING	HHPERSRV	Personal services	0	0	1	1	2	TRUE	6900
+HOUSING	HHOTHXPN	Other household expenses	0	0	1	1	2	TRUE	7000
+HOUSING	HKPGSUPP	Housekeeping supplies	0	1	0	0	1	TRUE	7100
+HOUSING	LAUNDRY	Laundry and cleaning supplies	0	0	1	1	2	TRUE	7200
+HOUSING	HKPGOTHR	Other household products	0	0	1	1	2	TRUE	7300
+HOUSING	POSTAGE	Postage and stationery	0	0	1	1	2	TRUE	7400
+HOUSING	HHFURNSH	Household furnishings and equipment	0	1	0	0	1	TRUE	7500
+HOUSING	HHTXTILE	Household textiles	0	0	1	1	2	TRUE	7600
+HOUSING	FURNITUR	Furniture	0	0	1	1	2	TRUE	7700
+HOUSING	FLOORCOV	Floor coverings	0	0	1	1	2	TRUE	7800
+HOUSING	MAJAPPL	Major appliances	0	0	1	1	2	TRUE	7900
+HOUSING	SMAPPHWR	Small appliances, misc. housewares	0	0	1	1	2	TRUE	8000
+HOUSING	MISCHHEQ	Miscellaneous household equipment	0	0	1	1	2	TRUE	8100
+APPAREL	APPAREL	Apparel and services	1	0	0	0	0	TRUE	8200
+APPAREL	MENBOYS	Apparel, Men and boys	0	1	0	0	1	TRUE	8300
+APPAREL	MENS	Apparel, Men, 16 and over	0	0	1	1	2	TRUE	8400
+APPAREL	BOYS	Apparel, Boys, 2 to 15	0	0	1	1	2	TRUE	8500
+APPAREL	WMNSGRLS	Apparel, Women and girls	0	1	0	0	1	TRUE	8600
+APPAREL	WOMENS	Apparel, Women, 16 and over	0	0	1	1	2	TRUE	8700
+APPAREL	GIRLS	Apparel, Girls, 2 to 15	0	0	1	1	2	TRUE	8800
+APPAREL	INFANT	Apparel, Children under 2	0	1	1	1	1	TRUE	8900
+APPAREL	FOOTWEAR	Footwear	0	1	1	1	1	TRUE	9000
+APPAREL	OTHAPPRL	Other apparel products and services	0	1	1	1	1	TRUE	9100
+TRANS	TRANS	Transportation	1	0	0	0	0	TRUE	9200
+TRANS	VEHPURCH	Vehicle purchases (net outlay)	0	1	0	0	1	TRUE	9300
+TRANS	NEWCARS	Vehicle purchases: Cars and trucks, new	0	0	1	1	2	TRUE	9400
+TRANS	USEDCARS	Vehicle purchases: Cars and trucks, used	0	0	1	1	2	TRUE	9500
+TRANS	OTHVEHCL	Other vehicle purchases	0	0	1	1	2	TRUE	9600
+TRANS	GASOIL	Gasoline and motor oil	0	1	1	1	1	TRUE	9700
+TRANS	VEHOTHXP	Other vehicle expenses	0	1	0	0	1	TRUE	9800
+TRANS	VEHFINCH	Vehicle finance charges	0	0	1	1	2	TRUE	9900
+TRANS	CAREPAIR	Vehicle maintenance and repairs	0	0	1	1	2	TRUE	10000
+TRANS	500110	Vehicle insurance	0	0	1	1	2	TRUE	10100
+TRANS	VEHRNTLC	Vehicle. rent., leas., licen., oth. charges	0	0	1	1	2	TRUE	10200
+TRANS	PUBTRANS	Public and other transportation	0	1	1	1	1	TRUE	10300
+HEALTH	HEALTH	Healthcare	1	0	0	0	0	TRUE	10400
+HEALTH	HLTHINSR	Health insurance	0	1	1	1	1	TRUE	10500
+HEALTH	MEDSERVS	Medical services	0	1	1	1	1	TRUE	10600
+HEALTH	DRUGS	Drugs: Prescription and nonprescription	0	1	1	1	1	TRUE	10700
+HEALTH	MEDSUPPL	Medical supplies	0	1	1	1	1	TRUE	10800
+ENTRTAIN	ENTRTAIN	Entertainment	1	0	0	0	0	TRUE	10900
+ENTRTAIN	FEESADM	Entertainment: fees and admissions	0	1	1	1	1	TRUE	11000
+ENTRTAIN	TVAUDIO	Audio and visual equipment and services	0	1	1	1	1	TRUE	11100
+ENTRTAIN	PETSPLAY	Pets, toys, and playground equipment	0	1	0	0	1	TRUE	11200
+ENTRTAIN	PETS	Pets	0	0	1	1	2	TRUE	11230
+ENTRTAIN	TOYS	Toys, hobbies, and playground equipment	0	0	1	1	2	TRUE	11250
+ENTRTAIN	ENTEROTH	Entertainment: other supplies, equip., & services	0	1	1	1	1	TRUE	11300
+PERSCARE	PERSCARE	Personal care products and services	1	1	1	1	0	TRUE	11400
+READING	READING	Reading	1	1	1	1	0	TRUE	11500
+EDUCATN	EDUCATN	Education	1	1	1	1	0	TRUE	11600
+TOBACCO	TOBACCO	Tobacco products and smoking supplies	1	1	1	1	0	TRUE	11700
+MISC	MISC	Miscellaneous expenditures	1	1	1	1	0	TRUE	11800
+CASHCONT	CASHCONT	Cash contributions	1	1	1	1	0	TRUE	11900
+INSPENSN	INSPENSN	Personal insurance and pensions	1	0	0	1	0	TRUE	12000
+INSPENSN	LIFEINSR	Life and other personal insurance	0	1	1	1	1	TRUE	12100
+INSPENSN	PENSIONS	Pensions and Social Security	0	1	1	1	1	TRUE	12200
+INCBEFTX	INCBEFTX	Money income before taxes	NA	NA	NA	NA	0	TRUE	12400
+INCBEFTX	900000	Wages and salaries	NA	NA	NA	NA	1	TRUE	12500
+INCBEFTX	SFEMPINC	Self-employment income	NA	NA	NA	NA	1	TRUE	12600
+INCBEFTX	RETIRINC	Social Security, private & government retirement	NA	NA	NA	NA	1	TRUE	12700
+INCBEFTX	INDIVRNT	Interest, dividends, rent income, property income	NA	NA	NA	NA	1	TRUE	12800
+INCBEFTX	OTHBNFTS	Unemp. & workers' compen., veterans benefits	NA	NA	NA	NA	1	TRUE	12900
+INCBEFTX	WELFARE	Public assist., suplmntl. secrty. income, SNAP	NA	NA	NA	NA	1	TRUE	13000
+INCBEFTX	REGCONT	Regular contributions for support	NA	NA	NA	NA	1	TRUE	13100
+INCBEFTX	OTHRINC	Other income	NA	NA	NA	NA	1	TRUE	13200
+INCBEFTX	OTHREGIN	Unemp and workrs' comp, vet bnfits, reg contrib	NA	NA	NA	NA	1	TRUE	13250
+PERSTAX	PERSTAX	Personal taxes	NA	NA	NA	NA	0	TRUE	13300
+PERSTAX	FEDTAXES	Federal income taxes	NA	NA	NA	NA	1	TRUE	13400
+PERSTAX	STATETAX	State and local income taxes	NA	NA	NA	NA	1	TRUE	13500
+PERSTAX	OTHRTAX	Other taxes	NA	NA	NA	NA	1	TRUE	13600
+INCAFTTX	INCAFTTX	Income after taxes	NA	NA	NA	NA	0	TRUE	13700
+CHGASLI	CHGASLI	Net change in total assets and liabilities	NA	NA	NA	NA	0	TRUE	13800
+CHGASLI	CHGASSET	Net change in total assets	NA	NA	NA	NA	1	TRUE	13900
+CHGASLI	CHGLIAB	Net change in total liabilities	NA	NA	NA	NA	1	TRUE	14000
+TITLEOFI	OTHRMONY	Other money receipts	NA	NA	NA	NA	1	TRUE	14100
+TITLEOFI	MRTPRINP	Mortgage principal paid, owned property	NA	NA	NA	NA	1	TRUE	14200
+TITLEOFI	800721	Estimated market value of owned home	NA	NA	NA	NA	1	TRUE	14300
+TITLEOFI	910050	Est. monthly rental value of owned home	NA	NA	NA	NA	1	TRUE	14400
+CONSUNIT	CONSUNIT	Number of consumer units (in thousands)	NA	NA	NA	NA	0	TRUE	14500
+TITLECU	INCBFTAX	Income before taxes	NA	NA	NA	NA	0	TRUE	14600
+TITLECU	INCAFTAX	Income after taxes	NA	NA	NA	NA	0	TRUE	14700
+TITLECU	980020	Age of reference person	NA	NA	NA	NA	0	TRUE	14800
+TITLECU	TITLEACU	Average number in consumer unit:	NA	NA	NA	NA	0	FALSE	14900
+TITLECU	980010	Number of People in CU	NA	NA	NA	NA	1	TRUE	15000
+TITLECU	980050	Number of Children under 18	NA	NA	NA	NA	1	TRUE	15100
+TITLECU	980060	Adults 65 and older	NA	NA	NA	NA	1	TRUE	15200
+TITLECU	980030	Number of Earners	NA	NA	NA	NA	1	TRUE	15300
+TITLECU	VEHICLES	Number of Vehicles	NA	NA	NA	NA	1	TRUE	15400
+TITLEPD	TITLESRP	Reference person:	NA	NA	NA	NA	0	FALSE	15500
+TITLEPD	980210	Percent Men reference persons	NA	NA	NA	NA	1	TRUE	15600
+TITLEPD	980220	Percent Women reference persons	NA	NA	NA	NA	1	TRUE	15700
+TITLEPD	TITLEHT	Housing tenure:	NA	NA	NA	NA	0	FALSE	15800
+TITLEPD	HOMEOWN	Percent Homeowner	NA	NA	NA	NA	1	TRUE	15900
+TITLEPD	980230	Percent Homeowner with mortgage	NA	NA	NA	NA	2	TRUE	16000
+TITLEPD	980240	Percent Homeowner without mortgage	NA	NA	NA	NA	2	TRUE	16100
+TITLEPD	980260	Percent Renter	NA	NA	NA	NA	1	TRUE	16200
+TITLEPD	TITLERRP	Race of reference person:	NA	NA	NA	NA	0	FALSE	16300
+TITLEPD	980270	Percent Black or African American	NA	NA	NA	NA	1	TRUE	16400
+TITLEPD	WHTNDOTH	Percent White, Asian, and All Other Races	NA	NA	NA	NA	1	TRUE	16500
+TITLEPD	TITLEHOP	Hispanic or Latino origin of reference person:	NA	NA	NA	NA	0	FALSE	16600
+TITLEPD	980285	Percent Hispanic or Latino	NA	NA	NA	NA	1	TRUE	16700
+TITLEPD	980286	Percent Not Hispanic or Latino	NA	NA	NA	NA	1	TRUE	16800
+TITLEPD	TITLEEDU	Education of reference person:	NA	NA	NA	NA	0	FALSE	16900
+TITLEPD	980290	Percent Elementary (1-8)	NA	NA	NA	NA	1	TRUE	17000
+TITLEPD	980300	Percent High school (9-12)	NA	NA	NA	NA	1	TRUE	17100
+TITLEPD	980310	Percent College	NA	NA	NA	NA	1	TRUE	17200
+TITLEPD	980320	Percent Never attended school and other	NA	NA	NA	NA	1	TRUE	17300
+TITLEPD	980350	At least one vehicle owned or leased	NA	NA	NA	NA	0	TRUE	17400
