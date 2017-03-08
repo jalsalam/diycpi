@@ -17,3 +17,7 @@
 
 #4 - Jameel will change/commit/push. Nabeel will change/(not commit)/stash/pull/pop
 #This is Jameel's next change.
+
+#5 - this one is different. Now we will have different branches. Jameel will change/commit/push. Nabeel will branch/change/commit/push.
+#[change thiS LINE]
+#this won't conflict.
