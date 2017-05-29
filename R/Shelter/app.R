@@ -42,7 +42,7 @@ ui <- fluidPage(
   # Growth rates or Level
   
    # Application title
-   titlePanel("BLS Shelter Prices"),
+   titlePanel("BLS Housing Prices"),
    
    # Sidebar with a slider input for number of bins 
    sidebarLayout(position = "left",
@@ -50,15 +50,15 @@ ui <- fluidPage(
        helpText("View and compare BLS shelter prices indices by area and subcomponents when available."),
                      
        radioButtons("series", label = "Select series to view:",
-                    choices = c("Shelter since 1997 with more detail", 
-                                "Shelter since 1967 with less detail"), 
-                              selected = "Shelter since 1997 with more detail"),
+                    choices = c("Housing since 1967 depending on area", 
+                                "Housing since 1997 by renter/owner"), 
+                              selected = "Housing since 1967 depending on area"),
        
-       radioButtons("comparison", label = "Select comparison series:", 
-                    choices = c("All items", "Food", "Transportation"), selected = "Food"),
+       selectInput("comparison", label = "Select comparison series:", 
+                    choices = c("All items", "Food", "Medical", "Transportation", "None"), selected = "Food"),
        
        selectInput("area", label = "Select area",
-                   choices = c("Nation", "Northeast with pop > 1.5m", "Wasington-Baltimore"), selected = "Nation"),
+                   choices = cu_area$area_name),
        
        selectInput("display", label = "Display:", 
                    choices = c("Level of index", "Annual change of index"), selected = "Level of index")
@@ -80,14 +80,16 @@ server <- function(input, output) {
      series = "^S[AE][H][1ABCD]"  
      
      dataset <- switch(input$series,
-                       "Shelter since 1997 with more detail" = cu_data_0_current,
-                       "Shelter since 1967 with less detail" = cu_data_2_summaries
+                       "Housing since 1997 by renter/owner" = cu_data_0_current,
+                       "Housing since 1967 depending on area" = cu_data_2_summaries
      )
      
      comparison <- switch(input$comparison,
                       "All items" = "SA0",
                       "Food" = "SAF",
-                      "Transportation" = "SAT"
+                      "Medical" = "SAM",
+                      "Transportation" = "SAT",
+                      "None" = "ZZZ"
      )
      
      area <- switch(input$area, 
@@ -101,17 +103,21 @@ server <- function(input, output) {
                        "Annual change of index" = "growth_rate"
      )
      
-     area_name <- filter_(dataset, ~area_code == area)$area_name[1]
+     # area_name <- filter_(dataset, ~area_code == area)$area_name[1]
     
+     area <- filter_(dataset, ~area_name == input$area)$area_code[1]
+     
      dataset %>%
        filter_(~area_code == area) %>%
        filter_(~item_code %in% c("SAH", "SEHA", "SEHC", comparison)) %>%
        ggplot(aes_(~year, as.name(display))) +
        geom_line(aes(color = item_name)) +  
        geom_vline(xintercept = 1996.5) +
+       ylim(50, 300) +
+       xlim(1980, 2017) +
        labs(x = "Year", 
             y = "Index", 
-            title = area_name[1], 
+            title = input$area, 
             caption = "Source: BLS")
      
    })
