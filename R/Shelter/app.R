@@ -2,28 +2,36 @@
 # This is a Shiny web application. You can run the application by clicking
 # the 'Run App' button above.
 #
-# Requires two datasets to be downloaded from BLS and placed in the BLSdatases directory.
+# Requires four datasets to be downloaded from BLS and placed in the BLSdatases directory.
 # Runs from a folder under the R folder
 
-
+library(forcats)
 library(shiny)
+
+cu_area <- read_tsv("../../BLSdatabases/cu.area")
+cu_item <- read_tsv("../../BLSdatabases/cu.item")
 
 cu_data_2_summaries <- read_tsv("../../BLSdatabases/cu.data.2.Summaries") %>%
   filter(period == "M13" | period == "S03") %>%
   filter(year > 1966) %>%
   separate(series_id, into = c("data_type", "area_code", "item_code"), sep = c(4, 8)) %>%
+  left_join(cu_item) %>%
+  select(year, area_code, item_code, item_name, value) %>%
+  left_join(cu_area) %>%
+  select(year, area_code, item_code, item_name, area_name, value) %>%
   group_by(area_code, item_code) %>%
-  mutate(growth_rate = (value - lag(value))/lag(value)) %>%
-  filter(growth_rate > -.2) 
+  mutate(growth_rate = (value - lag(value))/lag(value)) 
 
 cu_data_0_current <- read_tsv("../../BLSdatabases/cu.data.0.Current") %>%
   filter(period == "M13" | period == "S03") %>%
   filter(year > 1966) %>%
   separate(series_id, into = c("data_type", "area_code", "item_code"), sep = c(4, 8)) %>%
+  left_join(cu_item) %>%
+  select(year, area_code, item_code, item_name, value) %>%
+  left_join(cu_area) %>%
+  select(year, area_code, item_code, item_name, area_name, value) %>%
   group_by(area_code, item_code) %>%
-  mutate(growth_rate = (value - lag(value))/lag(value)) %>%
-  filter(growth_rate > -.2) 
-
+  mutate(growth_rate = (value - lag(value))/lag(value)) 
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
@@ -92,14 +100,19 @@ server <- function(input, output) {
                        "Level of index" = "value" ,
                        "Annual change of index" = "growth_rate"
      )
+     
+     area_name <- filter_(dataset, ~area_code == area)$area_name[1]
     
      dataset %>%
        filter_(~area_code == area) %>%
        filter_(~item_code %in% c("SAH", "SEHA", "SEHC", comparison)) %>%
        ggplot(aes_(~year, as.name(display))) +
-       geom_line(aes(color = item_code)) + 
+       geom_line(aes(color = item_name)) +  
        geom_vline(xintercept = 1996.5) +
-       labs(x = "Year", y = "Index", title = "Annual Average")
+       labs(x = "Year", 
+            y = "Index", 
+            title = area_name[1], 
+            caption = "Source: BLS")
      
    })
 }
