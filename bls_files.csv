@@ -7,6 +7,7 @@ cx_demographics,demographics,cx,cx.demographics,https://download.bls.gov/pub/tim
 cx_subcategory,subcategory,cx,cx.subcategory,https://download.bls.gov/pub/time.series/cx/,read_tsv,,
 cu_data,data,cu,cu.data.0.Current,https://download.bls.gov/pub/time.series/cu/,read_tsv,,
 cu_data_all,data_all,cu,cu.data.1.AllItems,https://download.bls.gov/pub/time.series/cu/,read_tsv,,
+cu_data_summaries,data_summaries,cu,cu.data.2.Summaries,https://download.bls.gov/pub/time.series/cu/,read_tsv,,
 cu_item,item,cu,cu.item,https://download.bls.gov/pub/time.series/cu/,read_tsv,,
 cu_series,series,cu,cu.series,https://download.bls.gov/pub/time.series/cu/,read_tsv,,
 ,,riw,usri_2016.txt,https://www.bls.gov/cpi/,import_riw_new,2016,2013-2014
