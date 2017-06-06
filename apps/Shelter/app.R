@@ -11,32 +11,39 @@ source('../../R/setup.R')
 cu_area <- read_tsv("../../BLSdatabases/cu.area")
 cu_item <- read_tsv("../../BLSdatabases/cu.item")
 
-cu_process <- function(df) {
-  df %>%
-    filter(period %in% c("M13", "S03"),
+cu_process <- function(file) {
+  
+    read_tsv("../../BLSdatabases/cu.data.2.Summaries",
+             col_types = cols(
+               series_id = col_character(),
+               year = col_integer(),
+               period = col_character(),
+               value = col_double(),
+               footnote_codes = col_character()
+             )) %>%
+    
+    filter(period == "M13",
            year > 1966) %>%
            
-    separate(series_id, into = c("data_type", "area_code", "item_code"), sep = c(4, 8)) %>%
+    separate(series_id, 
+             into = c("data_type", "area_code", "item_code"), 
+             sep = c(4, 8),
+             remove = FALSE) %>%
+    
     filter(item_code %in% c("SAH", "SEHA", "SEHC", "SA0", "SAM", "SAF", "SAT", "ZZZ")) %>%
   
     left_join(cu_item, by = "item_code") %>%
     left_join(cu_area, by = "area_code") %>%
-    select(year, area_code, item_code, item_name, area_name, value) %>%
-    
-    group_by(area_code, item_code, year) %>%
-    slice(1) %>% #eliminate cases of multiples in 1984
-    ungroup() %>%
+    select(series_id, year, area_code, item_code, item_name, area_name, value) %>%
     
     group_by(area_code, item_code) %>%
     mutate(growth_rate = (value - lag(value))/lag(value)) %>%
     ungroup()
 }
 
-cu_data_2_summaries <- read_tsv("../../BLSdatabases/cu.data.2.Summaries") %>%
-  cu_process()
+cu_data_2_summaries <- cu_process("../../BLSdatabases/cu.data.2.Summaries")
 
-cu_data_0_current <- read_tsv("../../BLSdatabases/cu.data.0.Current") %>%
-  cu_process()
+cu_data_0_current <- cu_process("../../BLSdatabases/cu.data.0.Current")
   
 
 # Define UI for application that draws a histogram
